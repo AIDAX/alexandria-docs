@@ -257,7 +257,18 @@ curl --request GET https://api.alexandria.io/v1/items \
 -H `Content-Type: application/json` \
 -d `{
         "key":"MY_KEY",
-        "blueprint_id": "BLUEPRINT ID"
+        "blueprint_id": "BLUEPRINT ID",
+        "filter": [{
+          "field": "price",
+          "comparator": "lt",
+          "value": 10
+        }],
+        "order_by": {
+          "field": "name",
+          "direction": "ASC"
+        },
+        "limit": 10
+        "skip": 10
     }`
 ```
 
@@ -273,6 +284,10 @@ Name | Required | Type | Default | Description
 ---- | -------- | ---- | ------- | -----------
 key | yes | string | | The API key
 blueprint_id | yes | string | | The blueprint ID
+filter | no | array | | A array containing conditions to filter the items list
+order_by | no | object | | A object containing the field to be sorted and the direction(ASC or DESC)
+limit | no | number | | How many items per page
+skip | no | number | | Skip X items
 
 # Show an Item Information
 
